@@ -2,7 +2,7 @@ const inputElement = document.querySelector(".new-task-input");
 const addTaskButton = document.querySelector(".new-task-button");
 const tasksContainer = document.querySelector(".tasks-container");
 
-// .trim() = evita que os espaços adicionados no input sejam lidos como valores
+
 const validateInput = () => {
     return inputElement.value.trim().length > 0;
 }
@@ -11,21 +11,21 @@ const handleAddTask = () => {
     const inputIsValid = validateInput();
 
     if (!inputIsValid) {
-        // Pq caso o valor seja invalido n tem pq prosseguir a função, por isso o return para finalizar
+       
         return inputElement.classList.add("error")
     }
 
-    //Criando Div dinamicamente
+   
     const taskItemContainer = document.createElement("div");
     taskItemContainer.classList.add("task-item");
 
-    //Criando paragrafo dinamicamente
+    
     const taskContent = document.createElement("p");
     taskContent.innerText = inputElement.value;
 
     taskContent.addEventListener('click', () => handleClick(taskContent))
 
-    //Criando icon dinamicamente
+    
     const deleteItem = document.createElement("i");
     deleteItem.classList.add("far");
     deleteItem.classList.add("fa-trash-alt");
@@ -43,14 +43,12 @@ const handleAddTask = () => {
     updateLocalStorage();
 }
 
-//taskContent = item que está sendo clicado
+
 const handleClick = (taskContent) => {
-    /* Obs: para o loop funcionar, a div n deve conter nada de comentários ou espaços 
-    tasks = todas as div dentro de tasksContainer
-    */
+   
     const tasks = tasksContainer.childNodes;
     for (const task of tasks) {
-        //Veriaficando se o "p" de cada div do loop é semelhante ao "p" passado como parâmetro
+        
         if (task.firstChild.isSameNode(taskContent)) {
             task.firstChild.classList.toggle('completed')
         }
@@ -96,11 +94,11 @@ const refreshTasksUsingLocalStorage = () => {
     const tasksFromLocalStorage = JSON.parse(localStorage.getItem('tasks'));
 
     for (const task of tasksFromLocalStorage) {
-        //Criando Div dinamicamente
+        
     const taskItemContainer = document.createElement("div");
     taskItemContainer.classList.add("task-item");
 
-    //Criando paragrafo dinamicamente
+    
     const taskContent = document.createElement("p");
         taskContent.innerText = task.description;
         if (task.isCompleted) {
@@ -110,7 +108,7 @@ const refreshTasksUsingLocalStorage = () => {
 
     taskContent.addEventListener('click', () => handleClick(taskContent))
 
-    //Criando icon dinamicamente
+    
     const deleteItem = document.createElement("i");
     deleteItem.classList.add("far");
     deleteItem.classList.add("fa-trash-alt");
