@@ -95,7 +95,7 @@ const updateLocalStorage = () => {
 const refreshTasksUsingLocalStorage = () => {
     const tasksFromLocalStorage = JSON.parse(localStorage.getItem('tasks'));
     
-    if (tasksFromLocalStorage.length > 0) {
+    if (tasksFromLocalStorage) {
         for (const task of tasksFromLocalStorage) {
             //Criando Div dinamicamente
             const taskItemContainer = document.createElement("div");
