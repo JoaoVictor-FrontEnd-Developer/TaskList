@@ -94,33 +94,35 @@ const updateLocalStorage = () => {
 
 const refreshTasksUsingLocalStorage = () => {
     const tasksFromLocalStorage = JSON.parse(localStorage.getItem('tasks'));
+    
+    if (tasksFromLocalStorage.length > 0) {
+        for (const task of tasksFromLocalStorage) {
+            //Criando Div dinamicamente
+            const taskItemContainer = document.createElement("div");
+            taskItemContainer.classList.add("task-item");
 
-    for (const task of tasksFromLocalStorage) {
-        //Criando Div dinamicamente
-    const taskItemContainer = document.createElement("div");
-    taskItemContainer.classList.add("task-item");
-
-    //Criando paragrafo dinamicamente
-    const taskContent = document.createElement("p");
-        taskContent.innerText = task.description;
-        if (task.isCompleted) {
-            taskContent.classList.add("completed")
-        }
+            //Criando paragrafo dinamicamente
+            const taskContent = document.createElement("p");
+            taskContent.innerText = task.description;
+            if (task.isCompleted) {
+                taskContent.classList.add("completed")
+            }
     
 
-    taskContent.addEventListener('click', () => handleClick(taskContent))
+            taskContent.addEventListener('click', () => handleClick(taskContent))
 
-    //Criando icon dinamicamente
-    const deleteItem = document.createElement("i");
-    deleteItem.classList.add("far");
-    deleteItem.classList.add("fa-trash-alt");
+            //Criando icon dinamicamente
+            const deleteItem = document.createElement("i");
+            deleteItem.classList.add("far");
+            deleteItem.classList.add("fa-trash-alt");
 
-    deleteItem.addEventListener('click', () => handleDeleteClick(taskItemContainer, taskContent))
+            deleteItem.addEventListener('click', () => handleDeleteClick(taskItemContainer, taskContent))
 
-    taskItemContainer.appendChild(taskContent);
-    taskItemContainer.appendChild(deleteItem);
+            taskItemContainer.appendChild(taskContent);
+            taskItemContainer.appendChild(deleteItem);
 
-    tasksContainer.appendChild(taskItemContainer);
+            tasksContainer.appendChild(taskItemContainer);
+        }
     }
 }
 
