@@ -16,7 +16,7 @@ body{
 .container{
     padding: 30px 40px;
     width: 40%;
-    min-width: 500px;
+    min-width: 450px;
 }
 
 .new-task-container{
@@ -25,6 +25,8 @@ body{
     border-radius: 5px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .new-task-container input{
@@ -34,6 +36,7 @@ body{
     border-radius: 5px;
     padding: 12px;
     font-weight: 500;
+
 }
 
 .new-task-container input:focus{
@@ -95,4 +98,10 @@ body{
 
 .completed{
     text-decoration: line-through;
+}
+
+@media screen and (max-width:  414px){
+    .new-task-container{
+        flex-direction: column;
+    }
 }
